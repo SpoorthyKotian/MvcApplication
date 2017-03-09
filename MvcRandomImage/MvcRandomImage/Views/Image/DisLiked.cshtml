@@ -1,0 +1,39 @@
+﻿ @model MvcRandomImage.Models.Image
+
+@{
+    ViewBag.Title = "DisLikedImages";
+}
+
+@if (Session["UserId"] != null)
+{
+    if (ViewBag.ImageList != null)
+    {
+        <h3>Images that You Disliked</h3>
+
+        <div class="row">
+            @foreach (System.Data.DataRow dr in ViewBag.ImageList.Rows)
+            {
+                string ImageName = dr["ImageName"].ToString();
+
+                <div class="col-md-4" style="text-align:center; margin-top: 30px;">
+                    <img src="@Url.Content(ViewBag.ImagePath + @ImageName)" width="300" /> @Html.DisplayFor(modelItem => ImageName)
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="text-align:center;">
+                <div class="alert alert-info" role="alert">You have not disliked any images.</div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

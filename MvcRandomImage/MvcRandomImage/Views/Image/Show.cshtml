@@ -1,0 +1,52 @@
+﻿@model MvcRandomImage.Models.Image
+
+@{
+    ViewBag.Title = "Image";
+}
+
+@if (Session["UserId"] != null)
+{
+
+    <h2>Image</h2>
+
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="text-align:center;">
+                <div id="SuccessMsg" class="alert alert-success" role="alert" style="display:none;"></div>
+                <div id="ErrorMsg" class="alert alert-danger" role="alert" style="display:none;"></div>
+                <img id="ImgHolder" src="" width="600" />
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-4" style="text-align:right;">
+                        <a id="LikeBtn" href="" class="btn btn-default">Like</a>
+                    </div>
+                    <div class="col-md-4" style="text-align:center;">
+                        <a id="NextImgBtn" class="btn btn-default" href="@Url.RouteUrl("GetImage")" role="button">Show Next Image</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a id="DislikeBtn" href="" class="btn btn-default">Dislike</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+        $("#NextImgBtn").click();
+    });
+</script>
+
