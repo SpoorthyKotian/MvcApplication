@@ -35,14 +35,25 @@ namespace MvcRandomImage.Controllers
         {
             using (DatabaseContext db = new DatabaseContext())
             {
-                var usr = db.user.Single(u => u.Username == UserModel.Username && u.Password == UserModel.Password);
+                try
+                {
 
-                if (usr != null)
+                    var usr = db.user.Single(u => u.Username == UserModel.Username && u.Password == UserModel.Password);
+
+                    if (usr != null)
                 {
                     Session["UserId"] = usr.UserId.ToString();
                     Session["Username"] = usr.Username.ToString();
                     return RedirectToAction("Show", "Image");
                 }
+                }
+                catch (System.InvalidOperationException ex)
+                {
+                    // use logging modules and handler and log errors.
+                    var error = ex.Message;
+                    ModelState.AddModelError("User_Auth_Failure", "Error! Login details are incorrect.");
+                }
+
                 // TODO: Return with authentication failure message.
             }
 
