@@ -48,6 +48,10 @@
         $('#NextImgBtn').click(function (event) {
             $('#ErrorMsg').hide();
             $('#ErrorMsg').hide();
+            $("#LikeBtn").show();
+            $("#DislikeBtn").show();
+            $("#NextImgBtn").show();
+            $("#ImgHolder").show();
             event.preventDefault();
 
             $.ajax(this.href, {
@@ -60,11 +64,17 @@
                     else {
                         $('#ErrorMsg').html(data.Message);
                         $('#ErrorMsg').show();
+                        $("#LikeBtn").hide();
+                        $("#DislikeBtn").hide();
+                        $("#NextImgBtn").hide();
+                        $("#ImgHolder").hide();
                     }
                 }, 
                 error: function () {
                     $('#ErrorMsg').html('An error occurred');
                     $('#ErrorMsg').show();
+                    $("#LikeBtn").hide();
+                    $("#DislikeBtn").hide();
                     scrollToTop();
                 }
             });

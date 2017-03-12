@@ -47,14 +47,12 @@ namespace MvcRandomImage.Controllers
                     return RedirectToAction("Show", "Image");
                 }
                 }
-                catch (System.InvalidOperationException ex)
+                catch (InvalidOperationException ex)
                 {
                     // use logging modules and handler and log errors.
                     var error = ex.Message;
                     ModelState.AddModelError("User_Auth_Failure", "Error! Login details are incorrect.");
                 }
-
-                // TODO: Return with authentication failure message.
             }
 
             return View();

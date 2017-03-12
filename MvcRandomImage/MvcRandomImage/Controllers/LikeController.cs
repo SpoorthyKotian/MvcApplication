@@ -15,16 +15,16 @@ namespace MvcRandomImage.Controllers
         /// <summary>
         /// Performs like or dislike action on an image
         /// </summary>
-        /// <param name="ImageModel">Like model</param>
+        /// <param name="LikeModel">Like model</param>
         /// <param name="imageId">Image key</param>
         /// <param name="like">User input: 1-Like; 0-Dislike </param>
         /// <returns>Json with success or failure response</returns>
-        public ActionResult Like(Models.Like ImageModel, string imageId, string like)
+        public ActionResult Like(Models.Like LikeModel, string imageId, string like)
         {
             int UserId = Int32.Parse(Session["UserId"].ToString());
             int ImageId = Int32.Parse(imageId);
             bool Like = like == "1";
-            ImageModel.SetLike(UserId, ImageId, Like);
+            LikeModel.SetLike(UserId, ImageId, Like);
             ViewBag.Like = Like;
 
             string Message = "You have disliked this image.";
